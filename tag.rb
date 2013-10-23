@@ -13,7 +13,7 @@ end
 class Tag
   include DataMapper::Resource  
   property :id, Serial
-  property :title, String
+  property :title, String, :required => true, :unique => true
 
   # has n, :tag_connections
   # has n, :ideas, :through => :tag_connections

@@ -5,6 +5,12 @@ require_relative 'idea'
 require_relative 'tag'
 require_relative 'tag_connection'
 
+
+#change this to auto_upgrade! in order to clear out the database
+configure :development do
+  DataMapper.auto_upgrade!
+end
+
 get '/' do
   @ideas = Idea.all
   erb :index
@@ -19,7 +25,7 @@ post '/idea/create' do
     redirect '/idea/'+idea.id.to_s
   else
     status 412
-    redirect '/ideas'
+    redirect '/'
   end
 end
 
@@ -82,17 +88,13 @@ put '/tag/:id' do
 end
 
 post '/tag/create' do
-  @tags = Tag.all
-  @tags.each do |row|
-    if row.title.downcase == params[:title].downcase
-      tag = row
-      redirect '/tags'
-      break
-    else
-      tag = Tag.new(:title => params[:title])
-      tag.save
-      redirect '/tags'
-    end
+  tag = Tag.new(:title => params[:title])
+  if tag.save
+    status 201
+    redirect '/tag/'+tag.id.to_s
+  else
+    status 412
+    redirect '/tags'
   end
 end
 

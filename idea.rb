@@ -13,7 +13,10 @@ end
 class Idea
   include DataMapper::Resource  
   property :id, Serial
-  property :title, String
+  property :title, String, :required => true,
+  :messages => {
+    :presence => "Ideas must have titles."
+  }
   property :description, String
   property :rank, Integer
   property :completed_at, DateTime
