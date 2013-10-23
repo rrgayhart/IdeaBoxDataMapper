@@ -82,14 +82,17 @@ put '/tag/:id' do
 end
 
 post '/tag/create' do
-  tag = Tag.new(:title => params[:title])
-  if tag.save
-    status 201
-    redirect '/tags'
-    #redirect '/tag/'+tag.id.to_s
-  else
-    status 412
-    redirect '/tags'
+  @tags = Tag.all
+  @tags.each do |row|
+    if row.title.downcase == params[:title].downcase
+      tag = row
+      redirect '/tags'
+      break
+    else
+      tag = Tag.new(:title => params[:title])
+      tag.save
+      redirect '/tags'
+    end
   end
 end
 
