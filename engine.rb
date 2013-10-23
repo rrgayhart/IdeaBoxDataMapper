@@ -2,6 +2,23 @@ require 'rubygems'
 require 'sinatra'
 require 'data_mapper'
 require_relative 'idea'
+require_relative 'tag'
+
+get '/tags' do
+  @tags = Tag.all
+  erb :tags
+end
+
+post '/tag/create' do
+  tag = Tag.new(:title => params[:title], :idea_id => params[:idea_id])
+  if tag.save
+    status 201
+    redirect '/tag/'+tag.id.to_s
+  else
+    status 412
+    redirect '/tags'
+  end
+end
 
 post '/idea/create' do
   idea = Idea.new(:title => params[:title], :description => params[:description])
@@ -52,5 +69,5 @@ end
 
 delete '/idea/:id' do
   Idea.get(params[:id]).destroy
-  redirect '/ideas'  
+  redirect '/'  
 end
