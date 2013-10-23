@@ -8,8 +8,8 @@
 <% unless @ideas.empty? %>
 <ul>
 <% @ideas.each do |idea| %>
-<li <%= "class=\"completed\"" if idea.completed_at %>>
-<a href="/idea/<%=idea.id%>"><%= idea.title %></a>
+<li <%= "class=\"completed\"" if idea.completed? %>>
+<%= idea.link %>
 </li>
 <% end %>
 </ul>

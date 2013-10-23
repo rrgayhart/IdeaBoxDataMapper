@@ -12,6 +12,18 @@ class Idea
   property :rank, Integer
   property :completed_at, DateTime
 
+  def completed?
+    true if completed_at
+  end
+
+  def self.completed
+    all(:completed_at.not => nil)
+  end
+
+  def link
+    "<a href=\"idea/#{self.id}\">#{self.title}</a>" 
+  end
+
   def like!
     @rank ||= 0
     @rank += 1
