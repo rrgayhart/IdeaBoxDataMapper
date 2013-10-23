@@ -11,15 +11,43 @@ get '/tags' do
   erb :tags
 end
 
+put '/tag/:id' do
+  tag = Tag.get(params[:id])
+  tag.title = (params[:title])
+  if tag.save
+    status 201
+    redirect '/tags'
+    #redirect '/tag/'+tag.id.to_s
+  else
+    status 412
+    redirect '/tags'   
+  end
+end
+
 post '/tag/create' do
   tag = Tag.new(:title => params[:title])
   if tag.save
     status 201
-    redirect '/tag/'+tag.id.to_s
+    redirect '/tags'
+    #redirect '/tag/'+tag.id.to_s
   else
     status 412
     redirect '/tags'
   end
+end
+
+get '/tag/:id/delete' do
+  @tag = Tag.get(params[:id])
+  erb :delete_tag
+end
+
+get '/tag/:id' do
+  @tag = Tag.get(params[:id])
+end
+
+delete '/tag/:id' do
+  Tag.get(params[:id]).destroy
+  redirect '/tags'  
 end
 
 post '/idea/create' do

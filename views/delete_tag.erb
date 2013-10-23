@@ -1,0 +1,7 @@
+<h2><%= @tag.title %><h2>
+<h3>Are you sure you want to delete this tag?<h3>
+<form action="/tag/<%= @tag.id %>" method="post">
+<input type="hidden" name="_method" value="delete" />
+<input type="submit" value="Delete">
+ or <a href="/">Cancel</a>
+</form>
