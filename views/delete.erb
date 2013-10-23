@@ -1,0 +1,7 @@
+<h2><%= @idea.title %><h2>
+<h3>Are you sure you want to delete this idea?<h3>
+<form action="/idea/<%= @idea.id %>" method="post">
+<input type="hidden" name="_method" value="delete" />
+<input type="submit" value="Delete">
+ or <a href="/">Cancel</a>
+</form>
