@@ -10,6 +10,9 @@
 <% @ideas.each do |idea| %>
 <li <%= "class=\"completed\"" if idea.completed? %>>
 <%= idea.link %>
+<div>
+<%= idea.created_at %>
+</div>
 </li>
 <% end %>
 </ul>

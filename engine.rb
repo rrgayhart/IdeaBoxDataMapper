@@ -13,7 +13,7 @@ end
 #Idea Section
 
 post '/idea/create' do
-  idea = Idea.new(:title => params[:title], :description => params[:description])
+  idea = Idea.new(:title => params[:title], :description => params[:description], :created_at => Time.now)
   if idea.save
     status 201
     redirect '/idea/'+idea.id.to_s
@@ -107,4 +107,18 @@ delete '/tag/:id' do
   Tag.get(params[:id]).destroy
   redirect '/tags'  
 end
+
+# Tag Connection Section
+post '/tag_connection/create' do
+  tag_connection = TagConnection.new(:idea_id => params[:idea_id], :tag_id => params[:tag_id], :created_at => Time.now)
+    if tag_connection.save
+    status 201
+    redirect '/tags'
+    #redirect '/tag/'+tag.id.to_s
+  else
+    status 412
+    redirect '/tags'
+  end
+end
+
 

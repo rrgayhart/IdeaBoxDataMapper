@@ -17,6 +17,7 @@ class Idea
   property :description, String
   property :rank, Integer
   property :completed_at, DateTime
+  property :created_at, DateTime
 
   # has n, :tag_connections
   # has n, :tags, :through => :tag_connections
