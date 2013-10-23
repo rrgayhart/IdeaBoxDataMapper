@@ -1,6 +1,5 @@
 <form action="/tag/create" method="POST">
   <input type="text" name="title" id="title">
-  <input type="integer" name="idea_id" id="idea_id">
   <input type="submit" value="Add Tag!"/>
 </form>
 
@@ -10,7 +9,6 @@
 <% @tags.each do |tag| %>
 <li> 
   <%= tag.title %> 
-  <%= tag.idea_id %>
 </li>
 <% end %>
 </ul>

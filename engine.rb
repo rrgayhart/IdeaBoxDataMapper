@@ -3,6 +3,8 @@ require 'sinatra'
 require 'data_mapper'
 require_relative 'idea'
 require_relative 'tag'
+require_relative 'tag_connection'
+
 
 get '/tags' do
   @tags = Tag.all
@@ -10,7 +12,7 @@ get '/tags' do
 end
 
 post '/tag/create' do
-  tag = Tag.new(:title => params[:title], :idea_id => params[:idea_id])
+  tag = Tag.new(:title => params[:title])
   if tag.save
     status 201
     redirect '/tag/'+tag.id.to_s
@@ -71,3 +73,4 @@ delete '/idea/:id' do
   Idea.get(params[:id]).destroy
   redirect '/'  
 end
+
