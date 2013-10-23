@@ -6,6 +6,10 @@ require_relative 'tag'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 
+def teardown_tag_connections
+   Idea.all.destroy
+end
+
 class TagConnection
   include DataMapper::Resource  
   property :id, Serial
