@@ -1,0 +1,7 @@
+ENV['RACK_ENV'] = 'test'
+gem 'minitest'
+require 'minitest/autorun'
+require 'minitest/pride'
+require 'rack/test'
+require_relative '../engine'
+require_relative '../idea'

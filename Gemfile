@@ -1,0 +1,12 @@
+source 'https://rubygems.org'
+ruby "2.0.0"
+gem 'minitest'
+gem 'minitest/autorun'
+gem 'rubygems'
+gem 'data_mapper'
+gem 'sinatra'
+gem 'sinatra-contrib', require: 'sinatra/reloader'
+gem 'rack'
+gem 'rack-test'
+gem 'capybara'
+gem 'minitest-capybara'
