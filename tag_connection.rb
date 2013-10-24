@@ -12,14 +12,9 @@ end
 
 class TagConnection
   include DataMapper::Resource  
-  property :id, Serial
-  property :idea_id, Integer
-  property :tag_id, Integer
-  property :created_at, DateTime
   
-  # belongs_to :tag
-  # belongs_to :idea
+  belongs_to :tag, :key => true
+  belongs_to :idea, :key => true
 end
 
-DataMapper.auto_upgrade!
 

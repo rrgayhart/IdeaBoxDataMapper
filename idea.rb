@@ -22,8 +22,8 @@ class Idea
   property :completed_at, DateTime
   property :created_at, DateTime
 
-  # has n, :tag_connections
-  # has n, :tags, :through => :tag_connections
+  has n, :tag_connections, :constraint => :destroy
+  has n, :tags, :through => :tag_connections
 
   def completed?
     true if completed_at
@@ -47,5 +47,3 @@ class Idea
   end
 end
 
-
-DataMapper.auto_upgrade!

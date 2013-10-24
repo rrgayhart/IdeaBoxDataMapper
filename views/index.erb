@@ -1,21 +1,29 @@
+<div class="form">
 <form action="/idea/create" method="POST">
   <input type="text" name="title" id="title">
   <input type="text" name="description" id="description">
+  <input type="text" name="tag" id="tag">
   <input type="submit" value="Add Idea!"/>
 </form>
+</div>
 
 <h2>Ideas:</h2>
 <% unless @ideas.empty? %>
-<ul>
+<ul class="idealist">
 <% @ideas.each do |idea| %>
-<li <%= "class=\"completed\"" if idea.completed? %>>
-<%= idea.link %>
-<div>
-<%= idea.created_at %>
-</div>
-</li>
+<% unless idea.completed? %>
+<a href="/idea/<%= idea.id %>"> 
+  <li class="ideaitem">
+  <%= idea.title %>
+  <div class="tab">
+  <%= idea.description %>
+  </div>
+  </li>
+</a>
+<% end %>
 <% end %>
 </ul>
 <% else %>
 <p>No Ideas!</p>
 <% end %>
+

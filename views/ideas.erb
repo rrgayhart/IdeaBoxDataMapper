@@ -1,0 +1,44 @@
+<div class="form">
+<form action="/idea/create" method="POST">
+  <input type="text" name="title" id="title">
+  <input type="text" name="description" id="description">
+  <input type="text" name="tag" id="tag">
+  <input type="submit" value="Add Idea!"/>
+</form>
+</div>
+
+
+<% unless @ideas.empty? %>
+  <h2>Ideas:</h2>
+  <ul class="idealist">
+    <% @ideas.each do |idea| %>
+      <% unless idea.completed? %>
+      <a href="/idea/<%= idea.id %>"> 
+        <li class="ideaitem">
+        <%= idea.title %>
+        <div class="tab">
+        <%= idea.description %>
+        </div>
+        </li>
+      </a>
+      <% end %>
+    <% end %>
+  </ul>
+  <h2>Completed Ideas:</h2>
+  <ul class="idealist">
+  <% @ideas.each do |idea| %>
+    <% if idea.completed? %>
+      <a href="/idea/<%= idea.id %>"> 
+        <li <%= "class=\"completed\"" if idea.completed? %>>
+        <%= idea.title %>
+        <div class="tab">
+        <%= idea.description %>
+        </div>
+        </li>
+      </a>
+    <% end %>
+  <% end %>
+  </ul>
+<% else %>
+  <p>No Ideas!</p>
+<% end %>

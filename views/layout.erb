@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <title>Idea Box</title>
 <meta charset=utf-8 />
-<style>
-.completed{text-decoration:line-through;}
-</style>
+<link rel="stylesheet" href="/styles.css">
+
 </head>
 <body>
-<h1><a href="/">The Mighty IdeaBox</a></h1>
-
-<%= yield %>
-
+  <div id="wrap">
+    <div id="header">
+      <h1><a href="/">The Mighty IdeaBox</a></h1>
+    </div>
+    <div id="nav">
+      <ul id="nav">
+        <li><a href="/">Home</a></li>
+        <li><a href='/tags'>Tags</a></li>
+        <li><a href='/ideas'>Ideas</a></li>
+      </ul>
+    </div>
+    <div id="main">
+      <%= yield %>
+    </div>
+    <div id="sidebar">
+    <h2>Tags:</h2>
+    <% unless @tags == nil %>
+    <ul>
+    <% @tags.each do |tag| %>
+    <li> 
+      <%= tag.title %> 
+    </li>
+    <% end %>
+    </ul>
+    <% else %>
+    <p>No Tags!</p>
+    <% end %>
+    </div>
+    <div id="footer">
+      <h2>Thanks!</h2>
+    </div>
+  </div>
 </body>
 </html>

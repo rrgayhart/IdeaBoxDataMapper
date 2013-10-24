@@ -1,0 +1,131 @@
+body,
+html {
+  margin:0;
+  padding:0;
+  color:#000;
+  background:#FFFFFF;
+}
+
+.completed{
+  text-decoration:line-through;
+  color: #000;
+}
+
+.completed:hover {
+  background: #D7FFEB;
+  color: #000;
+}
+
+h1 {
+  margin: 0;
+  font-size: 50px;
+}
+
+h2 {
+  margin: 0 0 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  color: #FFF;
+}
+
+ul.idealist {
+  padding: 0px;
+}
+
+.idealist li {
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  margin-right: 30px;
+  margin-left: 25px;
+  background: #FFF;
+  font-size: 20px;
+  list-style:none;
+}
+
+li.ideaitem:hover {
+  background: #D7FFEB;
+  color: #000;
+}
+
+div.ideashowpage {
+  margin: 30px;
+}
+
+div.tab {
+  padding-left: 25px;
+  font-size: 18px;
+}
+
+.logo1 {
+  width: 700px;
+}
+
+.form {
+  width: 400px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#wrap {
+  width:750px;
+  margin:0 auto;
+  background: #D7FFEB;
+}
+
+#header {
+  padding:5px 10px;
+  background: #585B59;
+  text-align: center;
+}
+
+#nav {
+  padding:5px 10px;
+  background: #A4CCB8;
+  text-align: center;
+  font-size: 30px;
+
+}
+
+#nav ul{
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+#nav li {
+  display:inline;
+  margin:0;
+  padding:25px;
+}
+
+#main {
+  float:left;
+  width:480px;
+  padding: 10px 5px 15px 15px;
+  background: #ddd;
+  min-height: 250px;
+}
+
+#sidebar {
+  float: right;
+  width: 190px;
+  background: #D7FFEB;
+  margin: 25px;
+}
+
+#sidebar ul {
+  list-style:none;
+}
+
+#footer {
+  clear: both;
+  padding: 0px 40px 0px 40px;
+  background: #A4CCB8;
+  margin: 0 0 auto;
+}

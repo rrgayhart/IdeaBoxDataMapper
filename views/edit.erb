@@ -1,5 +1,6 @@
 <h2><%= @idea.title %></h2>
 <h4><%= @idea.description %></h4>
+<h5><%= @idea.tags.map(&:title).join(", ") %></h5>
 <form action="/idea/<%= @idea.id %>" method="post">
 <input name="_method" type="hidden" value="put" />
 <input type="text" name="title" id="title" value="<%= @idea.title %>">

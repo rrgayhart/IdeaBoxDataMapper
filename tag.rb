@@ -15,9 +15,8 @@ class Tag
   property :id, Serial
   property :title, String, :required => true, :unique => true
 
-  # has n, :tag_connections
-  # has n, :ideas, :through => :tag_connections
+  has n, :tag_connections
+  has n, :ideas, :through => :tag_connections
 
 end
 
-DataMapper.auto_upgrade!

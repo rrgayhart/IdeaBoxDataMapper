@@ -1,16 +1,16 @@
-# require_relative 'test_helper'
+require_relative 'test_helper'
 
-# class EngineTest < MiniTest::Test
+class EngineTest < MiniTest::Test
 
-#   include Rack::Test::Methods
+  include Rack::Test::Methods
 
-#   def app
-#     IdeaBoxApp
-#   end
+  def app
+    IdeaBoxApp
+  end
 
-#   def test_hello_world
-#     get '/'
-#     assert last_response.ok?
-#     assert last_response.body =~ /Mighty/
-#   end
-# end
+  def test_hello_world
+    get '/'
+    assert last_response.ok?
+    assert last_response.body =~ /Mighty/
+  end
+end

@@ -6,20 +6,28 @@ require_relative 'tag'
 require_relative 'tag_connection'
 
 
-#change this to auto_upgrade! in order to clear out the database
+#change this to auto_migrate! in order to clear out the database
 configure :development do
-  DataMapper.auto_upgrade!
+  DataMapper.auto_migrate!
 end
+
 
 get '/' do
   @ideas = Idea.all
+  @tags = Tag.all
   erb :index
 end
 
 #Idea Section
+get '/ideas' do
+  @ideas = Idea.all
+  @tags = Tag.all
+  erb :ideas
+end
 
 post '/idea/create' do
   idea = Idea.new(:title => params[:title], :description => params[:description], :created_at => Time.now)
+  tag_ideas(params[:tag].split(","), idea)
   if idea.save
     status 201
     redirect '/idea/'+idea.id.to_s
@@ -29,13 +37,22 @@ post '/idea/create' do
   end
 end
 
+def tag_ideas(tags, idea)
+    tags.each do |tag_title|
+    tag = Tag.first_or_new(:title => tag_title.strip)
+    idea.tags << tag
+  end
+end
+
 get '/idea/:id' do
+  @tags = Tag.all
   @idea = Idea.get(params[:id])
   erb :edit
 end
 
 
 get '/idea/:id/edit' do
+  @tags = Tag.all
   @idea = Idea.get(params[:id])
   erb :edit
 end
@@ -56,6 +73,7 @@ put '/idea/:id' do
 end
 
 get '/idea/:id/delete' do
+  @tags = Tag.all
   @idea = Idea.get(params[:id])
   erb :delete
 end
@@ -125,5 +143,6 @@ post '/tag_connection/create' do
     redirect '/tags'
   end
 end
+
 
 
