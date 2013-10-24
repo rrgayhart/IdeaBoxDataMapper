@@ -8,7 +8,7 @@ require_relative 'tag_connection'
 
 #change this to auto_migrate! in order to clear out the database
 configure :development do
-  DataMapper.auto_migrate!
+  DataMapper.auto_upgrade!
 end
 
 
