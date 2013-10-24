@@ -1,5 +1,17 @@
+<p>
 <% if @tag != nil %>
   <h2><%= @tag.title %></h2>
+  <em><h4>Tagged in:</h4></em>
+  <div class="tab">
+  <% @tideas = @tag.ideas %>
+  <% @tideas.each do |idea| %>
+    <a href="/idea/<%= idea.id %>"> 
+    <li>
+    <%= idea.title %>
+    </li>
+  </a>
+  <% end %>  
+  </div>
 <% else %>
   <h2> No tag for that id! </h2>
 <% end %>

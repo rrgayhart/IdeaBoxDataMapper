@@ -4,6 +4,7 @@ html {
   padding:0;
   color:#000;
   background:#FFFFFF;
+  font-family: 'Raleway', sans-serif;
 }
 
 .completed{
@@ -33,6 +34,17 @@ a {
 a:hover {
   color: #FFF;
 }
+
+.delete {
+  padding: 6px;
+  background: #FFF;
+  font-size: 12px; 
+}
+
+.delete:hover {
+  background: #DF8F8F 
+}
+
 
 ul.idealist {
   padding: 0px;
@@ -125,6 +137,14 @@ div.tab {
 
 #sidebar ul {
   list-style:none;
+}
+
+.sidebar_link {
+  font-size: 20px;
+}
+
+.sidebar_link:hover {
+  color: #585B59;
 }
 
 #footer {

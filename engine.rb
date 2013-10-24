@@ -13,8 +13,9 @@ end
 
 
 get '/' do
-  @ideas = Idea.all
+  @ideas = Idea.all(:limit => 4, :order => [:created_at.desc])
   @tags = Tag.all
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc]) 
   erb :index
 end
 
@@ -22,12 +23,14 @@ end
 get '/ideas' do
   @ideas = Idea.all
   @tags = Tag.all
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
+  @completed_ideas = Idea.all(:limit => 5, :completed_at => true, :order => [:completed_at.desc])
   erb :ideas
 end
 
 post '/idea/create' do
   idea = Idea.new(:title => params[:title], :description => params[:description], :created_at => Time.now)
-  tag_ideas(params[:tag].split(","), idea)
+  tag_ideas(params[:tag].downcase.split(","), idea)
   if idea.save
     status 201
     redirect '/idea/'+idea.id.to_s
@@ -47,6 +50,7 @@ end
 get '/idea/:id' do
   @tags = Tag.all
   @idea = Idea.get(params[:id])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   erb :edit
 end
 
@@ -54,6 +58,7 @@ end
 get '/idea/:id/edit' do
   @tags = Tag.all
   @idea = Idea.get(params[:id])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   erb :edit
 end
 
@@ -75,6 +80,7 @@ end
 get '/idea/:id/delete' do
   @tags = Tag.all
   @idea = Idea.get(params[:id])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   erb :delete
 end
 
@@ -88,11 +94,14 @@ end
 # Tag Section
 
 get '/tags' do
+  @sidebar_tags = Tag.all(:limit => 8, :order => [:created_at.desc])
   @tags = Tag.all
   erb :tags
 end
 
 put '/tag/:id' do
+  @tags = Tag.all
+  @ideas = Idea.all
   tag = Tag.get(params[:id])
   tag.title = (params[:title])
   if tag.save
@@ -118,11 +127,13 @@ end
 
 get '/tag/:id/delete' do
   @tag = Tag.get(params[:id])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   erb :delete_tag
 end
 
 get '/tag/:id' do
   @tag = Tag.get(params[:id])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   erb :tag_show
 end
 

@@ -14,6 +14,7 @@ class Tag
   include DataMapper::Resource  
   property :id, Serial
   property :title, String, :required => true, :unique => true
+  property :created_at, DateTime
 
   has n, :tag_connections
   has n, :ideas, :through => :tag_connections

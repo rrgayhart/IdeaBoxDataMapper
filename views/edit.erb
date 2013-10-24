@@ -8,5 +8,5 @@
 <input id="completed" name="completed" type="checkbox" value="done" <%= @idea.completed_at ? "checked" : "" %>/>
 <input id="idea_submit" name="commit" type="submit" value="Update" />
 </form>
-
-<a href="/idea/<%= @idea.id %>/delete">Delete this idea</a>
+<p>
+<a href="/idea/<%= @idea.id %>/delete" class="delete">Delete this idea</a>
