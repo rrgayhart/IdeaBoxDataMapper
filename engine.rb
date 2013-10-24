@@ -11,7 +11,6 @@ configure :development do
   DataMapper.auto_upgrade!
 end
 
-
 get '/' do
   @ideas = Idea.all(:limit => 4, :order => [:created_at.desc])
   @tags = Tag.all
@@ -21,7 +20,7 @@ end
 
 #Idea Section
 get '/ideas' do
-  @ideas = Idea.all
+  @ideas = Idea.all(:order => [:created_at.asc])
   @tags = Tag.all
   @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   @completed_ideas = Idea.all(:limit => 5, :completed_at => true, :order => [:completed_at.desc])
@@ -94,7 +93,7 @@ end
 # Tag Section
 
 get '/tags' do
-  @sidebar_tags = Tag.all(:limit => 8, :order => [:created_at.desc])
+  @sidebar_tags = Tag.all(:limit => 6, :order => [:created_at.desc])
   @tags = Tag.all
   erb :tags
 end
