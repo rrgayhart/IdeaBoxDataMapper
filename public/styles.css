@@ -62,8 +62,12 @@ div.tab {
   font-size: 18px;
 }
 
-.logo1 {
+.logo {
   width: 700px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background-color:#E3A20B
 }
 
 .form {
@@ -125,7 +129,7 @@ div.tab {
 
 #footer {
   clear: both;
-  padding: 0px 40px 0px 40px;
-  background: #A4CCB8;
-  margin: 0 0 auto;
+  padding:5px 25px;
+  background: #585B59;
+  
 }
